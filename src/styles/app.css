@@ -35,3 +35,7 @@ h6 {
 p {
     font-size: 18px;
 }
+
+.main-content {
+    display: flex;
+}

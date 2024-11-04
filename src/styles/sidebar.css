@@ -1,6 +1,19 @@
+.sidebar {
+    height: calc(100vh - 100px);
+    background-color: black;
+    color: white;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .copyright {
     font-size: 12px;
     font-weight: 500;
     rotate: -90deg;
     margin: 0;
+    transform-origin: 25% 0%;
+    height: 70px;
+    width: max-content;
 }
