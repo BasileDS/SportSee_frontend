@@ -5,12 +5,12 @@
  * @returns 
  */
 
-function TitleHeading({ title, variable, heading }) {
+function Heading({ title, variable, heading }) {
 
   const HeadingTag = `h${heading}`
  
   return <HeadingTag>{title} {variable}</HeadingTag>
 }
   
-export default TitleHeading
+export default Heading
   

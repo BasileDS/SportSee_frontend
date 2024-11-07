@@ -1,0 +1,35 @@
+.profil-content-wrapper {
+  overflow: hidden;
+}
+
+.profil-content {
+  overflow-y: scroll;
+  height: calc(100vh - 160px);
+  padding: 60px 100px 0 100px;
+}
+
+.profil-charts-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  gap: 30px;
+}
+    
+.daily-activity-chart-wrapper { grid-area: 1 / 1 / 2 / 4; }
+.session-length-wrapper { grid-area: 2 / 1 / 3 / 2; }
+.hexa-chart-wrapper { grid-area: 2 / 2 / 3 / 3; }
+.score-chart-wrapper { grid-area: 2 / 3 / 3 / 4; }
+.other { grid-area: 1 / 4 / 3 / 5; }
+
+.chart-container {
+  background: #FBFBFB;
+  border-radius: 5px;
+}
+
+.stats-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}

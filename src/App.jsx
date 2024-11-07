@@ -1,15 +1,18 @@
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom"
+import { createBrowserRouter, defer, Outlet, RouterProvider } from "react-router-dom"
 
-import Dashboard from "./pages/dashboard"
-import Profil from "./pages/profil"
-import Reglage from "./pages/reglage"
-import Error from "./pages/error"
-import Communaute from "./pages/communaute"
+import Dashboard from "./pages/Dashboard"
+import Reglage from "./pages/Reglage"
+import Error from "./pages/Error"
+import Communaute from "./pages/Communaute"
+import Profil from "./pages/Profil"
 
+import Sidebar from "./components/sidebar"
 import Header from "./components/header"
-import Sidebar from "./components/Sidebar"
 
 import "./styles/app.css"
+import { getUserByUserId, getActivityByUserId, getAverageSessionsByUserId, getPerformanceByUserId } from "./utils/getUserData"
+
+const userId = 12
 
 const router = createBrowserRouter([
   {
@@ -18,20 +21,61 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
-        path: "/",
-        element: <Dashboard />
-      },
-      {
-        path: "profil",
-        element: <Profil />
-      },
-      {
-        path: "reglage",
-        element: <Reglage />
-      },
-      {
-        path: "communaute",
-        element: <Communaute />
+        path: "",
+        children: [
+          {
+            path: "",
+            element: <Dashboard />
+          },
+          {
+            path: "Profil",
+            element: <>
+            <div className="main-content">
+              <Sidebar />
+              <Outlet />
+            </div>
+            </>,
+            children: [
+              {
+                path: "",
+                element: <Profil />,
+                loader: async () => {
+                  const userData = getUserByUserId(userId)
+                  const activities = getActivityByUserId(userId)
+                  const averageSessions = getAverageSessionsByUserId(userId)
+                  const performance = getPerformanceByUserId(userId)
+                  return defer({
+                    userData, activities, averageSessions, performance
+                  })
+                }
+              },
+              {
+                path: "yoga",
+                element: <div>Yoga</div>
+              },
+              {
+                path: "swim",
+                element: <div>Swim</div>
+              },
+              {
+                path: "bicycle",
+                element: <div>Bicycle</div>
+              },
+              {
+                path: "weight",
+                element: <div>Weight</div>
+              }
+            ]
+          },
+          {
+            path: "reglage",
+            element: <Reglage />
+          },
+          {
+            path: "communaute",
+            element: <Communaute />
+          }
+        ]
       }
     ]
   }
@@ -40,10 +84,7 @@ const router = createBrowserRouter([
 function Root() {
   return <>
       <Header />
-      <div className="main-content">
-        <Sidebar />
-        <Outlet />
-      </div>
+      <Outlet />
     </>
 }
 
