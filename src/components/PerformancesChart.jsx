@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer } from "recharts"
 
 function PerformancesChart ({performance}) {
@@ -37,7 +38,7 @@ function PerformancesChart ({performance}) {
     return (
         <ResponsiveContainer aspect={1/1}>
             <RadarChart 
-                outerRadius={80}
+                outerRadius={50}
                 data={performanceData.reverse()}
                 
             >
