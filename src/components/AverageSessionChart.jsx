@@ -75,13 +75,12 @@ function AverageSessionChart ({averageSessions}) {
                     dataKey={ (sessionsData) => sessionsData.day }
                     strokeWidth="0"
                     tickMargin="10"
-                    padding={{left: -20, right: -20}}
+                    padding={{left: -10, right: -10}}
                 />
                 <YAxis
                     domain={[0, 'dataMax + 50']}
                     hide={true}
-                    // height={1000}
-                    padding={{ top: 70, bottom: 35 }}
+                    padding={{ top: 50, bottom: 0 }}
                 />
                 <Line
                     type="natural"

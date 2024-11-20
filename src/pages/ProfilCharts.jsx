@@ -13,7 +13,6 @@ import DailyActivityChart from "../components/DailyActivityChart"
 
 function ProfilCharts ({ userData, activity, averageSessions, performance }) {
 
-    
     return (<div className="profil-charts-container">
         <Suspense fallback={"CHARGEMENT"}>
             <Await resolve={activity}>

@@ -100,7 +100,7 @@ function DailyActivityChart ({activity}) {
         >
             <BarChart
                 data={dailyData}
-                margin={{ top: 50, right: 28, bottom: 35, left: 27 }}
+                margin={{ top: 50, right: 15, bottom: 35, left: 20 }}
                 barGap="8"
             >
                 <CartesianGrid 
@@ -113,7 +113,7 @@ function DailyActivityChart ({activity}) {
                     stroke="#9B9EAC"
                     tickMargin={25}
                     tickSize={0}
-                    padding={{ left: -26, right: -28 }}
+                    padding={{ left: -10, right: -10 }}
                 />
                 <YAxis
                     yAxisId="kg"
@@ -145,7 +145,7 @@ function DailyActivityChart ({activity}) {
                     layout="horizontal"
                     align="right"
                     verticalAlign="top"
-                    wrapperStyle={{ top: 20, right: 25 }}
+                    wrapperStyle={{ top: 10, right: 15 }}
                 />
                 <Bar
                     yAxisId="kg"

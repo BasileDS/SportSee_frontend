@@ -35,17 +35,35 @@ function PerformancesChart ({performance}) {
         category.kind = { value: category.value, kind: categoriesFr[i] }
     )
 
+    let outerRadius = 45
+
     return (
-        <ResponsiveContainer aspect={1/1}>
+        <ResponsiveContainer
+            aspect={1/1}
+        >
             <RadarChart 
-                outerRadius={50}
+                maxWidht="50"
+                innerRadius={10}
+                outerRadius={outerRadius}
                 data={performanceData.reverse()}
-                
             >
-                <PolarGrid radialLines={false}  />
-                <PolarAngleAxis dataKey="kind" tick={{ fill:"white", fontSize:"12" }}/>
-                <PolarRadiusAxis axisLine={false} tick={false}  />
-                <Radar dataKey="value" fill="#FF0101" fillOpacity={0.7} />
+                <PolarGrid
+                    radialLines={false} 
+                />
+                <PolarAngleAxis 
+                    dataKey="kind"
+                    tick={{ fill:"white", fontSize:"9" }}
+                    // orientation="inner"
+                />
+                <PolarRadiusAxis
+                    axisLine={false}
+                    tick={false} 
+                />
+                <Radar
+                    dataKey="value"
+                    fill="#FF0101"
+                    fillOpacity={0.7}
+                />
             </RadarChart>
         </ResponsiveContainer>
     )

@@ -10,7 +10,7 @@ import Sidebar from "./components/sidebar"
 import Header from "./components/header"
 
 import "./styles/app.css"
-import { getUserByUserId, getActivityByUserId, getAverageSessionsByUserId, getPerformanceByUserId } from "./utils/getUserData"
+import { getUserByUserId, getActivityByUserId, getAverageSessionsByUserId, getPerformanceByUserId } from "./services/getUserData"
 import Authentification from "./pages/Authentification"
 import { useState } from "react"
 

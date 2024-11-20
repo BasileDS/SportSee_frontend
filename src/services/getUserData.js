@@ -1,4 +1,4 @@
-const isMocked = import.meta.env.VITE_API_MOCK
+const isMocked = false
 
 import { mockUserData } from "../assets/data/userMainData"
 import { mockUserActivity } from "../assets/data/userActivity"
@@ -6,6 +6,7 @@ import { mockUserPerformance } from "../assets/data/performance"
 import { mockUserAverageSession } from "../assets/data/averageSession"
 
 export async function getUserByUserId(userId) {
+    console.log(isMocked)
     if (isMocked === true) {
         return new Promise((resolve) => {
             setTimeout(() => {
@@ -13,8 +14,10 @@ export async function getUserByUserId(userId) {
             }, 500)
         })
     } else {
-        const userData = await fetch(`http://localhost:3000/user/${userId}`).then(r => r.json())
-        return userData
+        const userData = await fetch(`http://localhost:3000/user/${userId}`)
+        const response = userData.json()
+
+        return response
     }
 }
 
@@ -26,8 +29,10 @@ export async function getActivityByUserId(userId) {
             }, 500)
         })
     } else {
-        const userData = await fetch(`http://localhost:3000/user/${userId}/activity`).then(r => r.json())
-        return userData
+        const userData = await fetch(`http://localhost:3000/user/${userId}/activity`)
+        const response = userData.json()
+
+        return response
     }
 }
 
@@ -39,8 +44,10 @@ export async function getAverageSessionsByUserId(userId) {
             }, 500)
         }) 
     } else {
-        const userData = await fetch(`http://localhost:3000/user/${userId}/average-sessions`).then(r => r.json())
-        return userData
+        const userData = await fetch(`http://localhost:3000/user/${userId}/average-sessions`)
+        const response = userData.json()
+
+        return response
     }
 }
 
@@ -52,8 +59,10 @@ export async function getPerformanceByUserId(userId) {
             }, 500)
         })
     } else {
-        const userData = await fetch(`http://localhost:3000/user/${userId}/performance`).then(r => r.json())
-        return userData
+        const userData = await fetch(`http://localhost:3000/user/${userId}/performance`)
+        const response = userData.json()
+
+        return response
     }
 }
 

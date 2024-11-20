@@ -11,7 +11,7 @@ import ProfilCharts from "./profilCharts"
 
 export default function Profil () {
 
-    const { userData, activity, averageSessions, performance} = useLoaderData()
+    const { userData, activity, averageSessions, performance } = useLoaderData()
 
     return <>
         <Suspense fallback={"CHARGEMENT"}>

@@ -1,5 +1,5 @@
 import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts"
-import { getTodayScore } from "../utils/getUserData"
+import { getTodayScore } from "../services/getUserData"
 
 function AvergageScoreChart (userData) {
 
@@ -17,7 +17,10 @@ function AvergageScoreChart (userData) {
             <p className="score-percentage">{percentage}</p>
             <p className="score-description">de votre objectif</p>
         </div>
-        <ResponsiveContainer aspect={1/1} minWidth={180}>
+        <ResponsiveContainer
+            aspect={1/1}
+            width={110}
+        >
             <RadialBarChart 
                 innerRadius="115%"
                 outerRadius="80%"
@@ -27,7 +30,10 @@ function AvergageScoreChart (userData) {
                 style={style}
                 title="Hello"
             >
-                <RadialBar dataKey="value" cornerRadius={37} />
+                <RadialBar
+                    dataKey="value"
+                    cornerRadius={37}
+                />
             </RadialBarChart>
         </ResponsiveContainer>
     </>
