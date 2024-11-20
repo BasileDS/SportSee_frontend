@@ -11,7 +11,7 @@ import ProfilCharts from "./profilCharts"
 
 export default function Profil () {
 
-    const {userData, activities, averageSessions, performance} = useLoaderData()
+    const { AuthContext, userData, activity, averageSessions, performance} = useLoaderData()
 
     return <>
         <Suspense fallback={"CHARGEMENT"}>
@@ -19,9 +19,11 @@ export default function Profil () {
                 {(userData) => 
                     <div className="profil-content-wrapper">
                         <div className="profil-content">
-                            <Heading title={"Bonjour"} variable={userData?.data?.userInfos?.firstName} heading={1} />
-                            <InfoMessage />
-                            <ProfilCharts activities={activities} averageSessions={averageSessions} performance={performance}/>
+                            <div className="profil-heading">
+                                <Heading title={"Bonjour"} variable={userData?.data?.userInfos?.firstName} heading={1} />
+                                <InfoMessage />
+                            </div>
+                            <ProfilCharts AuthContext={AuthContext} userData={userData} activity={activity} averageSessions={averageSessions} performance={performance}/>
                         </div>
                     </div>
                 }
@@ -29,8 +31,6 @@ export default function Profil () {
         </Suspense>
     </>
 }
-
-
 
 /*
 Plutôt que de passer une fonction prenant la promesse en paramètre pour afficher les contenu jsx,

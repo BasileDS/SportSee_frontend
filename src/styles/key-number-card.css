@@ -1,0 +1,38 @@
+.key-data {
+    display: flex;
+    gap: 30px;
+    background: #FBFBFB;
+    box-shadow: 0px 2px 4px 0px #00000005;
+    padding: 30px;
+  }
+
+.key-data-img-wrapper {
+    height: 60px;
+    width: 60px;
+    display: grid;
+    place-content: center;
+}
+
+.key-data-img {
+    max-width: 20px;
+    max-height: 20px;
+}
+
+.key-data-number, .key-data-title {
+    font-weight: 700;
+
+}
+
+.key-data-number {
+    font-size: 20px;
+}
+
+.key-data-title {
+    font-size: 14px;
+    color: #74798C;
+}
+
+.key-data-text {
+    display: grid;
+    align-items: center;
+}

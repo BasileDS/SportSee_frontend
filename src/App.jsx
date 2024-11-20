@@ -11,8 +11,8 @@ import Header from "./components/header"
 
 import "./styles/app.css"
 import { getUserByUserId, getActivityByUserId, getAverageSessionsByUserId, getPerformanceByUserId } from "./utils/getUserData"
-
-const userId = 12
+import Authentification from "./pages/Authentification"
+import { useState, createContext } from "react"
 
 const router = createBrowserRouter([
   {
@@ -22,30 +22,39 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
+        element: <Authentification />
+      },
+      {
+        path: "",
+        element: <>
+          <Header />
+          <Outlet />
+        </>,
         children: [
           {
-            path: "",
-            element: <Dashboard />
-          },
-          {
-            path: "Profil",
+            path: "profil/:userId",
             element: <>
-            <div className="main-content">
-              <Sidebar />
-              <Outlet />
-            </div>
+              <div className="main-content">
+                <Sidebar />
+                <Outlet />
+              </div>
             </>,
+            loader: async ({ params }) => {
+              return params.userId === "null" ? window.location.href = window.location.origin : ""
+            },
             children: [
               {
                 path: "",
                 element: <Profil />,
-                loader: async () => {
-                  const userData = getUserByUserId(userId)
-                  const activities = getActivityByUserId(userId)
-                  const averageSessions = getAverageSessionsByUserId(userId)
-                  const performance = getPerformanceByUserId(userId)
+                loader: async ({ params }) => {
+                  const AuthContext = createContext(params.userId)
+                  const userData = getUserByUserId(params.userId)
+                  const activity = getActivityByUserId(params.userId)
+                  const averageSessions = getAverageSessionsByUserId(params.userId)
+                  const performance = getPerformanceByUserId(params.userId)
+
                   return defer({
-                    userData, activities, averageSessions, performance
+                    AuthContext, userData, activity, averageSessions, performance
                   })
                 }
               },
@@ -68,12 +77,25 @@ const router = createBrowserRouter([
             ]
           },
           {
-            path: "reglage",
-            element: <Reglage />
+            path: "dashboard/:userId",
+            element: <Dashboard />,
+            loader: async ({ params }) => {
+              return params.userId === "null" ? window.location.href = window.location.origin : ""
+            },
           },
           {
-            path: "communaute",
-            element: <Communaute />
+            path: "reglage/:userId",
+            element: <Reglage />,
+            loader: async ({ params }) => {
+              return params.userId === "null" ? window.location.href = window.location.origin : ""
+            },
+          },
+          {
+            path: "communaute/:userId",
+            element: <Communaute />,
+            loader: async ({ params }) => {
+              return params.userId === "null" ? window.location.href = window.location.origin : ""
+            },
           }
         ]
       }
@@ -82,10 +104,10 @@ const router = createBrowserRouter([
 ])
 
 function Root() {
-  return <>
-      <Header />
-      <Outlet />
-    </>
+  const [userId, setUserId] = useState(null)
+
+
+  return <Outlet context={[userId, setUserId]} />
 }
 
 function App() {

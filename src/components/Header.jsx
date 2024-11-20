@@ -1,28 +1,28 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useOutletContext } from "react-router-dom"
 
 import sportseeLogo from "../assets/sportsee-logo.svg"
-
-
 import "../styles/header.css"
 
 function Header() {
 
+  const [userId] = useOutletContext()
+  
   const menu = [
     {
       title: "Accueil",
-      path: "/"
+      path: `/dashboard/${userId}`
     }, 
     {
       title: "Profil",
-      path: "/profil"
+      path: `profil/${userId}`
     }, 
     {
       title: "Réglage",
-      path: "/reglage"
+      path: `reglage/${userId}`
     }, 
     {
       title: "Communauté",
-      path: "/communaute"
+      path: `communaute/${userId}`
     }
   ]
 

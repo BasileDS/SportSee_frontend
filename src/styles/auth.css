@@ -1,0 +1,42 @@
+.auth {
+    background: #020203;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: grid;
+    place-content: center;
+    color: white;
+}
+
+.auth-title {
+    text-align: center;
+}
+
+label {
+    color: white;
+}
+
+.inputEls {
+    display: flex;
+}
+
+button {
+    width: 100px;
+    background: lightgray;
+    border: none;
+    border-radius:  0 10px 10px 0;
+    font-size: 16px;
+}
+
+.input {
+    border: none;
+    border-radius: 10px 0 0 10px;
+    height: 40px;
+    padding-left: 15px;
+    font-size: 16px;
+    width: 140px;
+}
+
+.img-logo {
+    justify-self: center;
+}
