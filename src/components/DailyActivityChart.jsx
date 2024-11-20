@@ -23,7 +23,7 @@ function DailyActivityChart (activity) {
 
         const ulStyle = {
             display: "flex",
-            gap: "25px",
+            gap: "5px",
             justifyContent: "end",
             marginTop: "0"
         }
@@ -37,11 +37,12 @@ function DailyActivityChart (activity) {
         }
         
         const legends = payload.map( legend => {
-            
+            console.log(legend.dataKey)
             const unit = legend.payload.unit
             const isCalories = legend.dataKey === "calories"
-            const text = isCalories ? `Calories brûlées (${unit})` : `Poids (${unit})`
-            const bulletColor = isCalories ? "#E60000" : "#282D30"
+            const isPoids = legend.dataKey === "kilogram"
+            const text = isCalories ? `Calories brûlées (${unit})` : isPoids ? `Poids (${unit})` : null
+            const bulletColor = isCalories ? "#E60000" : isPoids ? "#282D30" : "#FFFFFF"
 
             return <li key={`bar-chart-${legend.dataKey}`} style={liStyle} >
                     <svg width="15" height="15" viewBox="0 -2 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
