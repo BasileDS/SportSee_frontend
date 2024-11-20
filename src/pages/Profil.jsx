@@ -11,7 +11,7 @@ import ProfilCharts from "./profilCharts"
 
 export default function Profil () {
 
-    const { AuthContext, userData, activity, averageSessions, performance} = useLoaderData()
+    const { userData, activity, averageSessions, performance} = useLoaderData()
 
     return <>
         <Suspense fallback={"CHARGEMENT"}>
@@ -23,7 +23,7 @@ export default function Profil () {
                                 <Heading title={"Bonjour"} variable={userData?.data?.userInfos?.firstName} heading={1} />
                                 <InfoMessage />
                             </div>
-                            <ProfilCharts AuthContext={AuthContext} userData={userData} activity={activity} averageSessions={averageSessions} performance={performance}/>
+                            <ProfilCharts userData={userData} activity={activity} averageSessions={averageSessions} performance={performance}/>
                         </div>
                     </div>
                 }

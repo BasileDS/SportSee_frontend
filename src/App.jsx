@@ -12,7 +12,7 @@ import Header from "./components/header"
 import "./styles/app.css"
 import { getUserByUserId, getActivityByUserId, getAverageSessionsByUserId, getPerformanceByUserId } from "./utils/getUserData"
 import Authentification from "./pages/Authentification"
-import { useState, createContext } from "react"
+import { useState } from "react"
 
 const router = createBrowserRouter([
   {
@@ -47,14 +47,13 @@ const router = createBrowserRouter([
                 path: "",
                 element: <Profil />,
                 loader: async ({ params }) => {
-                  const AuthContext = createContext(params.userId)
                   const userData = getUserByUserId(params.userId)
                   const activity = getActivityByUserId(params.userId)
                   const averageSessions = getAverageSessionsByUserId(params.userId)
                   const performance = getPerformanceByUserId(params.userId)
 
                   return defer({
-                    AuthContext, userData, activity, averageSessions, performance
+                    userData, activity, averageSessions, performance
                   })
                 }
               },

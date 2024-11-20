@@ -1,26 +1,88 @@
-export async function getUserByUserId(userId) {
-    const userData = await fetch(`http://localhost:3000/user/${userId}`).then(r => r.json())
+const isMocked = import.meta.env.VITE_API_MOCK
 
-    return userData
+import { mockUserData } from "../assets/data/userMainData"
+import { mockUserActivity } from "../assets/data/userActivity"
+import { mockUserPerformance } from "../assets/data/performance"
+import { mockUserAverageSession } from "../assets/data/averageSession"
+
+export async function getUserByUserId(userId) {
+    if (isMocked === true) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(mockUserData)
+            }, 500)
+        })
+    } else {
+        const userData = await fetch(`http://localhost:3000/user/${userId}`).then(r => r.json())
+        return userData
+    }
 }
 
 export async function getActivityByUserId(userId) {
-    const userData = await fetch(`http://localhost:3000/user/${userId}/activity`).then(r => r.json())
-
-    return userData
+    if (isMocked === true) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(mockUserActivity)
+            }, 500)
+        })
+    } else {
+        const userData = await fetch(`http://localhost:3000/user/${userId}/activity`).then(r => r.json())
+        return userData
+    }
 }
 
 export async function getAverageSessionsByUserId(userId) {
-    const userData = await fetch(`http://localhost:3000/user/${userId}/average-sessions`).then(r => r.json())
-
-    return userData
+    if (isMocked === true) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(mockUserAverageSession)
+            }, 500)
+        }) 
+    } else {
+        const userData = await fetch(`http://localhost:3000/user/${userId}/average-sessions`).then(r => r.json())
+        return userData
+    }
 }
 
 export async function getPerformanceByUserId(userId) {
-    const userData = await fetch(`http://localhost:3000/user/${userId}/performance`).then(r => r.json())
-
-    return userData
+    if (isMocked === true) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(mockUserPerformance)
+            }, 500)
+        })
+    } else {
+        const userData = await fetch(`http://localhost:3000/user/${userId}/performance`).then(r => r.json())
+        return userData
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export function getDailyCalories(activity) {
     // const date = new Date 
@@ -76,9 +138,9 @@ export function getAverageSessionDuration (averageSessions) {
     return Math.round(averageSessionDuration)
 }
 
-export function getTodayScore(userData) {
-    const todayScore = userData.userData.data.todayScore
-    const score = userData.userData.data.score
+export function getTodayScore({userData}) {
+    const todayScore = userData.data.todayScore
+    const score = userData.data.score
     
     const result = todayScore ?? score
     const percentage = `${result * 100}%`

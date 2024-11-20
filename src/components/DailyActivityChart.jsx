@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, ResponsiveContainer } from "recharts"
 
-function DailyActivityChart (activity) {
+function DailyActivityChart ({activity}) {
 
-    const dailyActivity = activity.activity.data.sessions
+    const dailyActivity = activity.data.sessions
 
     if (dailyActivity.length < 10) {
         const diff = 10 - dailyActivity.length
@@ -23,7 +23,7 @@ function DailyActivityChart (activity) {
 
         const ulStyle = {
             display: "flex",
-            gap: "5px",
+            gap: "20px",
             justifyContent: "end",
             marginTop: "0"
         }
@@ -37,12 +37,10 @@ function DailyActivityChart (activity) {
         }
         
         const legends = payload.map( legend => {
-            console.log(legend.dataKey)
             const unit = legend.payload.unit
             const isCalories = legend.dataKey === "calories"
-            const isPoids = legend.dataKey === "kilogram"
-            const text = isCalories ? `Calories brûlées (${unit})` : isPoids ? `Poids (${unit})` : null
-            const bulletColor = isCalories ? "#E60000" : isPoids ? "#282D30" : "#FFFFFF"
+            const text = isCalories ? `Calories brûlées (${unit})` :  `Poids (${unit})`
+            const bulletColor = isCalories ? "#E60000" : "#282D30"
 
             return <li key={`bar-chart-${legend.dataKey}`} style={liStyle} >
                     <svg width="15" height="15" viewBox="0 -2 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -69,7 +67,9 @@ function DailyActivityChart (activity) {
                 width: "39px",
                 height: "63px",
                 display: "grid",
-                placeContent: "center"
+                placeContent: "center",
+                marginLeft: "30px",
+                marginBottom: "30px"
             } 
             
             const textStyle = {
@@ -100,7 +100,8 @@ function DailyActivityChart (activity) {
         >
             <BarChart
                 data={dailyData}
-                margin={{ top: 50, right: 25, bottom: 35, left: 25 }}
+                margin={{ top: 50, right: 28, bottom: 35, left: 27 }}
+                barGap="8"
             >
                 <CartesianGrid 
                     strokeDasharray="3 2"
@@ -112,6 +113,7 @@ function DailyActivityChart (activity) {
                     stroke="#9B9EAC"
                     tickMargin={25}
                     tickSize={0}
+                    padding={{ left: -26, right: -28 }}
                 />
                 <YAxis
                     yAxisId="kg"
@@ -153,10 +155,6 @@ function DailyActivityChart (activity) {
                     unit="kg"
                     radius={[100, 100, 0, 0]}
                     minPointSize={5}
-                />
-                <Bar
-                    yAxisId="kg"
-                    barSize="0"
                 />
                 <Bar
                     yAxisId="kcal"

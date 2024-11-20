@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Tooltip, Text } from "recharts"
 import "../styles/profil.css"
-function AverageSessionChart (averageSessions) {
+function AverageSessionChart ({averageSessions}) {
 
 
     const titleStyle = {
@@ -18,7 +18,7 @@ function AverageSessionChart (averageSessions) {
         padding: "2px 10px"
     }
 
-    const data = averageSessions.averageSessions.data.sessions
+    const data = averageSessions.data.sessions
     const days = ["L", "M", "M", "J", "V", "S", "D"]
     const sessionsData = data.map( (session, i) => 
         session.day = { day: days[i], sessionLength: session.sessionLength  }
@@ -75,12 +75,12 @@ function AverageSessionChart (averageSessions) {
                     dataKey={ (sessionsData) => sessionsData.day }
                     strokeWidth="0"
                     tickMargin="10"
-                    padding={{left: -7, right: -7}}
+                    padding={{left: -20, right: -20}}
                 />
                 <YAxis
                     domain={[0, 'dataMax + 50']}
                     hide={true}
-                    height={1000}
+                    // height={1000}
                     padding={{ top: 70, bottom: 35 }}
                 />
                 <Line

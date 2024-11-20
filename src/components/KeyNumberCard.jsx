@@ -1,12 +1,13 @@
+/* eslint-disable react/prop-types */
 import energy from "../assets/icons/energy.svg"
 import chicken from "../assets/icons/chicken.svg"
 import cheeseburger from "../assets/icons/cheeseburger.svg"
 import apple from "../assets/icons/apple.svg"
 
-function KeyNumberCard (keyData) {
+function KeyNumberCard ({keyData}) {
         
-    const dataType = keyData.keyData[0]       
-    let dataNumber = keyData.keyData[1]
+    const dataType = keyData[0]       
+    let dataNumber = keyData[1]
     let dataTitle = ""
     let dataIcon = ""
     let dataUnit = "g"

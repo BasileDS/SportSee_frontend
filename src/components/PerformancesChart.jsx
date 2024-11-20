@@ -1,9 +1,9 @@
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer } from "recharts"
 
-function PerformancesChart (performance) {
+function PerformancesChart ({performance}) {
 
-    const perfomancesByCategory = performance.performance.data.data
-    const categories = performance.performance.data.kind
+    const perfomancesByCategory = performance.data.data
+    const categories = performance.data.kind
 
     const categoriesFr = Object.entries(categories).map( (category) => {
         switch (category[1]) {

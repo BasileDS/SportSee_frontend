@@ -7,6 +7,10 @@ function Header() {
 
   const [userId] = useOutletContext()
   
+  const logoStyle = {
+    marginLeft: "15px"
+  }
+
   const menu = [
     {
       title: "Accueil",
@@ -27,7 +31,7 @@ function Header() {
   ]
 
   return <header>
-    <img src={sportseeLogo} alt="SportSee Logo" />
+    <img src={sportseeLogo} alt="SportSee Logo" style={logoStyle} />
     <nav> 
       <ul>
         {menu.map( link =>
